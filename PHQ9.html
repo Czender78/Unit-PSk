@@ -1,170 +1,119 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soal Selidik PHQ-9</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .question { 
+            margin-bottom: 20px; 
+            padding: 15px; 
+            border-radius: 8px; 
+            background: #f9f9f9;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
         }
-        h1 {
-            color: #333;
-        }
-        .questionnaire {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .question {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="radio"] {
-            margin-right: 10px;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .question p { font-size: 16px; font-weight: bold; margin-bottom: 10px; }
+        .options label { display: block; margin-bottom: 5px; font-size: 14px; }
+        button { 
+            display: block; 
+            width: 100%; 
+            padding: 10px; 
+            background: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px; 
             cursor: pointer;
+            transition: background 0.3s;
         }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .scale, #result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #e6e6e6;
-            border-radius: 5px;
-        }
-        .result-text {
-            font-weight: bold;
-        }
+        button:hover { background: #0056b3; }
+        .result { font-weight: bold; margin-top: 20px; padding: 15px; background: #dff0d8; border-radius: 8px; }
+        .error { color: red; text-align: center; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>Soal Selidik PHQ-9</h1>
-        <p>Soal Selidik Kesihatan Pesakit-9 (PHQ-9) adalah alat penilaian kendiri untuk menyaring, mendiagnosis, memantau, dan mengukur tahap kemurungan.</p>
-    </header>
-
-    <main class="questionnaire">
-        <form id="phq9-form">
-            <div class="question">
-                <label>1. Kurang berminat atau keseronokan dalam melakukan sesuatu perkara.</label>
-                <input type="radio" name="q1" value="0"> Tidak sama sekali
-                <input type="radio" name="q1" value="1"> Beberapa hari
-                <input type="radio" name="q1" value="2"> Lebih separuh hari
-                <input type="radio" name="q1" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>2. Rasa sedih,tidak gembira atau putus asa.</label>
-                <input type="radio" name="q2" value="0"> Tidak sama sekali
-                <input type="radio" name="q2" value="1"> Beberapa hari
-                <input type="radio" name="q2" value="2"> Lebih separuh hari
-                <input type="radio" name="q2" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>3. Masalah untuk tidur nyenyak atau tidur berlebihan.</label>
-                <input type="radio" name="q3" value="0"> Tidak sama sekali
-                <input type="radio" name="q3" value="1"> Beberapa hari
-                <input type="radio" name="q3" value="2"> Lebih separuh hari
-                <input type="radio" name="q3" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>4. Rasa letih atau mempunyai sedikit tenaga.</label>
-                <input type="radio" name="q4" value="0"> Tidak sama sekali
-                <input type="radio" name="q4" value="1"> Beberapa hari
-                <input type="radio" name="q4" value="2"> Lebih separuh hari
-                <input type="radio" name="q4" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>5. Kurang selera atau makan berlebihan.</label>
-                <input type="radio" name="q5" value="0"> Tidak sama sekali
-                <input type="radio" name="q5" value="1"> Beberapa hari
-                <input type="radio" name="q5" value="2"> Lebih separuh hari
-                <input type="radio" name="q5" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>6. Rasa buruk mengenai diri anda-atau anda seorang yang gagal atau anda telah menyebabkan diri anda atau keluarga anda kecewa.</label>
-                <input type="radio" name="q6" value="0"> Tidak sama sekali
-                <input type="radio" name="q6" value="1"> Beberapa hari
-                <input type="radio" name="q6" value="2"> Lebih separuh hari
-                <input type="radio" name="q6" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>7. Masalah untuk menumpukan perhatian ke atas sesuatu perkara seperti membaca surat khabar atau menonton televisyen.</label>
-                <input type="radio" name="q7" value="0"> Tidak sama sekali
-                <input type="radio" name="q7" value="1"> Beberapa hari
-                <input type="radio" name="q7" value="2"> Lebih separuh hari
-                <input type="radio" name="q7" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>8. Bergerak atau bercakap terlalu perlahan sehinggakan orang lain perasan?Atau sebaliknya-menjadi sangat resah atau gelisah sehinggakan anda telah bergerak dengan banyak daripada biasa.</label>
-                <input type="radio" name="q8" value="0"> Tidak sama sekali
-                <input type="radio" name="q8" value="1"> Beberapa hari
-                <input type="radio" name="q8" value="2"> Lebih separuh hari
-                <input type="radio" name="q8" value="3"> Hampir setiap hari
-            </div>
-            <div class="question">
-                <label>9. Memikirkan adalah lebih baik saja jika anda mati atau mencederakan diri anda dalam beberapa cara.</label>
-                <input type="radio" name="q9" value="0"> Tidak sama sekali
-                <input type="radio" name="q9" value="1"> Beberapa hari
-                <input type="radio" name="q9" value="2"> Lebih separuh hari
-                <input type="radio" name="q9" value="3"> Hampir setiap hari
-            </div>
-            <button type="button" onclick="calculateScore()">Hantar</button>
+    <div class="container">
+        <h2>Soal Selidik PHQ-9</h2>
+        <form id="phqForm">
+            <p>PHQ-9 bukan instrument klinikal dan tidak mendiagnos kemurungan. Ujian ini merupakan saringan dan petunjuk untuk individu bagi simptom kesihatan mental yang boleh mempengaruhi gaya hidup seseorang individu. Bagi individu yang mendapat skor markah tinggi bagi mana-mana isu disarankan untuk mendapatkan penerokaan lanjut dan mungkin perlu rujuk kepada pakar.</p>
+            <div id="questions"></div>
+            <button type="button" onclick="calculateScores()">Calculate Scores</button>
+            <p class="error" id="errorMessage"></p>
         </form>
-
-        <div class="scale">
-            <h3>Skala Skor Saringan Bagi Ujian PHQ-9</h3>
-            <p>0-4: Normal</p>
-            <p>5-9: Ringan</p>
-            <p>10-14: Sederhana</p>
-            <p>15-19: Sederhana Teruk</p>
-            <p>20-27: Teruk</p>
-        </div>
-
-        <p id="result"></p>
-    </main>
-
+        <div class="result" id="result"></div>
+    </div>
+    
     <script>
-        function calculateScore() {
+        const questions = [
+            "Kurang berminat atau keseronokan dalam melakukan sesuatu perkara.",
+            "Rasa sedih,tidak gembira atau putus asa.",
+            "Masalah untuk tidur nyenyak atau tidur berlebihan.",
+            "Rasa letih atau mempunyai sedikit tenaga.",
+            "Kurang selera atau makan berlebihan.",
+            "Rasa buruk mengenai diri anda-atau anda seorang yang gagal atau anda telah menyebabkan diri anda atau keluarga anda kecewa.",
+            "Masalah untuk menumpukan perhatian ke atas sesuatu perkara seperti membaca surat khabar atau menonton televisyen.",
+            "Bergerak atau bercakap terlalu perlahan sehinggakan orang lain perasan?Atau sebaliknya-menjadi sangat resah atau gelisah sehinggakan anda telah bergerak dengan banyak daripada biasa.",
+            "Memikirkan adalah lebih baik saja jika anda mati atau mencederakan diri anda dalam beberapa cara."
+        ];
+        
+        const responses = [
+            { value: 0, label: "Tidak Langsung" },
+            { value: 1, label: "Beberapa Hari" },
+            { value: 2, label: "Lebih Separuh Hari" },
+            { value: 3, label: "Hampir Setiap Hari" }
+        ];
+        
+        function loadQuestions() {
+            let container = document.getElementById("questions");
+            questions.forEach((question, index) => {
+                let div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `<p>${index + 1}. ${question}</p>`;
+                let optionsDiv = document.createElement("div");
+                optionsDiv.classList.add("options");
+                responses.forEach(response => {
+                    optionsDiv.innerHTML += `<label><input type="radio" name="q${index}" value="${response.value}"> ${response.value} - ${response.label}</label>`;
+                });
+                div.appendChild(optionsDiv);
+                container.appendChild(div);
+            });
+        }
+        
+        function calculateScores() {
             let totalScore = 0;
-            let interpretation = "";
-            let unanswered = false;
-
-            for (let i = 1; i <= 9; i++) {
-                let selected = document.querySelector('input[name="q' + i + '"]:checked');
-                if (selected) {
-                    totalScore += parseInt(selected.value);
+            let allAnswered = true;
+            
+            questions.forEach((_, index) => {
+                let value = document.querySelector(`input[name="q${index}"]:checked`);
+                if (!value) {
+                    allAnswered = false;
                 } else {
-                    unanswered = true;
+                    totalScore += parseInt(value.value);
                 }
-            }
-
-            if (unanswered) {
-                document.getElementById("result").innerText = "Sila jawab semua soalan sebelum menghantar!";
+            });
+            
+            if (!allAnswered) {
+                document.getElementById("errorMessage").innerText = "Please answer all questions before calculating scores.";
                 return;
             }
-
-            let explanations = ["Normal.", "Ringan.", "Sederhana.", "Sederhana Teruk.", "Teruk."];
-            let levels = [4, 9, 14, 19, 27];
-            interpretation = explanations[levels.findIndex(l => totalScore <= l)];
-
-            document.getElementById("result").innerHTML = `<h3>Skor Saringan Anda: ${totalScore}</h3><p class="result-text">${interpretation}</p>`;
+            document.getElementById("errorMessage").innerText = "";
+            
+            let interpretation = interpretScore(totalScore);
+            document.getElementById("result").innerHTML = `<p>PHQ-9 Score: <strong>${totalScore}</strong> - ${interpretation}</p>`;
         }
+        
+        function interpretScore(score) {
+            if (score >= 20) return "Teruk";
+            if (score >= 15) return "Sederhana Teruk";
+            if (score >= 10) return "Sederhana";
+            if (score >= 5) return "Ringan";
+            return "Normal";
+        }
+        
+        window.onload = loadQuestions;
     </script>
-
 </body>
 </html>
