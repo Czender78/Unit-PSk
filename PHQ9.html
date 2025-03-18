@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuesioner PHQ-9</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .questionnaire {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .scale, #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e6e6e6;
+            border-radius: 5px;
+        }
+        .result-text {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Kuesioner PHQ-9</h1>
+        <p>Soal Selidik Kesihatan Pesakit-9 (PHQ-9) adalah alat penilaian kendiri untuk menyaring, mendiagnosis, memantau, dan mengukur tahap kemurungan.</p>
+    </header>
+
+    <main class="questionnaire">
+        <form id="phq9-form">
+            <div class="question">
+                <label>1. Kurang minat atau keseronokan dalam melakukan perkara?</label>
+                <input type="radio" name="q1" value="0"> Tidak sama sekali
+                <input type="radio" name="q1" value="1"> Beberapa hari
+                <input type="radio" name="q1" value="2"> Lebih separuh hari
+                <input type="radio" name="q1" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>2. Berasa murung, tertekan, atau putus asa?</label>
+                <input type="radio" name="q2" value="0"> Tidak sama sekali
+                <input type="radio" name="q2" value="1"> Beberapa hari
+                <input type="radio" name="q2" value="2"> Lebih separuh hari
+                <input type="radio" name="q2" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>3. Sukar tidur atau tidur terlalu banyak?</label>
+                <input type="radio" name="q3" value="0"> Tidak sama sekali
+                <input type="radio" name="q3" value="1"> Beberapa hari
+                <input type="radio" name="q3" value="2"> Lebih separuh hari
+                <input type="radio" name="q3" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>4. Rasa letih atau kurang tenaga?</label>
+                <input type="radio" name="q4" value="0"> Tidak sama sekali
+                <input type="radio" name="q4" value="1"> Beberapa hari
+                <input type="radio" name="q4" value="2"> Lebih separuh hari
+                <input type="radio" name="q4" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>5. Hilang selera makan atau makan berlebihan?</label>
+                <input type="radio" name="q5" value="0"> Tidak sama sekali
+                <input type="radio" name="q5" value="1"> Beberapa hari
+                <input type="radio" name="q5" value="2"> Lebih separuh hari
+                <input type="radio" name="q5" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>6. Rasa tidak berharga atau gagal?</label>
+                <input type="radio" name="q6" value="0"> Tidak sama sekali
+                <input type="radio" name="q6" value="1"> Beberapa hari
+                <input type="radio" name="q6" value="2"> Lebih separuh hari
+                <input type="radio" name="q6" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>7. Sukar menumpukan perhatian, seperti membaca atau menonton TV?</label>
+                <input type="radio" name="q7" value="0"> Tidak sama sekali
+                <input type="radio" name="q7" value="1"> Beberapa hari
+                <input type="radio" name="q7" value="2"> Lebih separuh hari
+                <input type="radio" name="q7" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>8. Bergerak atau bercakap dengan sangat perlahan atau terlalu gelisah?</label>
+                <input type="radio" name="q8" value="0"> Tidak sama sekali
+                <input type="radio" name="q8" value="1"> Beberapa hari
+                <input type="radio" name="q8" value="2"> Lebih separuh hari
+                <input type="radio" name="q8" value="3"> Hampir setiap hari
+            </div>
+            <div class="question">
+                <label>9. Fikiran bahawa anda lebih baik mati atau mencederakan diri sendiri?</label>
+                <input type="radio" name="q9" value="0"> Tidak sama sekali
+                <input type="radio" name="q9" value="1"> Beberapa hari
+                <input type="radio" name="q9" value="2"> Lebih separuh hari
+                <input type="radio" name="q9" value="3"> Hampir setiap hari
+            </div>
+            <button type="button" onclick="calculateScore()">Hantar</button>
+        </form>
+
+        <div class="scale">
+            <h3>Skala Skor Saringan Bagi Ujian PHQ-9</h3>
+            <p>0-4: Tiada atau minimum kemurungan</p>
+            <p>5-9: Kemurungan ringan</p>
+            <p>10-14: Kemurungan sederhana</p>
+            <p>15-19: Kemurungan sederhana-ke-parah</p>
+            <p>20-27: Kemurungan parah</p>
+        </div>
+
+        <p id="result"></p>
+    </main>
+
+    <script>
+        function calculateScore() {
+            let totalScore = 0;
+            let interpretation = "";
+            let unanswered = false;
+
+            for (let i = 1; i <= 9; i++) {
+                let selected = document.querySelector('input[name="q' + i + '"]:checked');
+                if (selected) {
+                    totalScore += parseInt(selected.value);
+                } else {
+                    unanswered = true;
+                }
+            }
+
+            if (unanswered) {
+                document.getElementById("result").innerText = "Sila jawab semua soalan sebelum menghantar!";
+                return;
+            }
+
+            let explanations = ["Tiada atau minimum kemurungan.", "Kemurungan ringan.", "Kemurungan sederhana.", "Kemurungan sederhana-ke-parah.", "Kemurungan parah."];
+            let levels = [4, 9, 14, 19, 27];
+            interpretation = explanations[levels.findIndex(l => totalScore <= l)];
+
+            document.getElementById("result").innerHTML = `<h3>Skor Saringan Anda: ${totalScore}</h3><p class="result-text">${interpretation}</p>`;
+        }
+    </script>
+
+</body>
+</html>
