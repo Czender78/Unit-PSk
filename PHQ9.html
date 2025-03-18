@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuesioner PHQ-9</title>
+    <title>Soal Selidik PHQ-9</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -128,11 +128,11 @@
 
         <div class="scale">
             <h3>Skala Skor Saringan Bagi Ujian PHQ-9</h3>
-            <p>0-4: Tiada atau minimum kemurungan</p>
-            <p>5-9: Kemurungan ringan</p>
-            <p>10-14: Kemurungan sederhana</p>
-            <p>15-19: Kemurungan sederhana-ke-parah</p>
-            <p>20-27: Kemurungan parah</p>
+            <p>0-4: Normal</p>
+            <p>5-9: Ringan</p>
+            <p>10-14: Sederhana</p>
+            <p>15-19: Sederhana Teruk</p>
+            <p>20-27: Teruk</p>
         </div>
 
         <p id="result"></p>
@@ -158,7 +158,7 @@
                 return;
             }
 
-            let explanations = ["Tiada atau minimum kemurungan.", "Kemurungan ringan.", "Kemurungan sederhana.", "Kemurungan sederhana-ke-parah.", "Kemurungan parah."];
+            let explanations = ["Normal.", "Ringan.", "Sederhana.", "Sederhana Teruk.", "Teruk."];
             let levels = [4, 9, 14, 19, 27];
             interpretation = explanations[levels.findIndex(l => totalScore <= l)];
 
