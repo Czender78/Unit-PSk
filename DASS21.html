@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal Selidik DASS-21</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .question { 
+            margin-bottom: 20px; 
+            padding: 15px; 
+            border-radius: 8px; 
+            background: #f9f9f9;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .question p { font-size: 16px; font-weight: bold; margin-bottom: 10px; }
+        .options label { display: block; margin-bottom: 5px; font-size: 14px; }
+        button { 
+            display: block; 
+            width: 100%; 
+            padding: 10px; 
+            background: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px; 
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background: #0056b3; }
+        .result { font-weight: bold; margin-top: 20px; padding: 15px; background: #dff0d8; border-radius: 8px; }
+        .error { color: red; text-align: center; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Soal Selidik DASS-21</h2>
+        <form id="dassForm">
+            <p>Sila baca setiap kenyataan di bawah dan pilih jawapan berdasarkan skala 0,1,2 atau 3 bagi menggambarkan keadaan anda sepanjang dua minggu yang lalu. Tiada jawapan yang betul atau salah:</p>
+            <div id="questions"></div>
+            <button type="button" onclick="calculateScores()">Calculate Scores</button>
+            <p class="error" id="errorMessage"></p>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script>
+        const questions = [
+            "Saya dapati diri saya sukar ditenteramkan.",
+            "Saya sedar mulut saya terasa kering.",
+            "Saya tidak dapat mengalami perasaan positif sama sekali.",
+            "Saya mengalami kesukaran bernafas contohnya bernafas terlalu cepat, tercungap –cungap walaupun tidak melakukan aktiviti fizikal.",
+            "Saya sukar untuk mendapatkan semangat bagi melakukan perkara.",
+            "Saya cenderung untuk bertindak keterlaluan dalam sesuatu perkara.",
+            "Saya rasa menggeletar (Contohnya pada tangan).",
+            "Saya rasa saya menggunakan banyak tenaga dalam keadaan.",
+            "Saya bimbang keadaan di mana saya mungkin menjadi panik dan melakukan perkara yang membodohkan diri sendiri.",
+            "Saya rasa saya tidak mempunyai apa-apa untuk diharapkan.",
+            "Saya dapati diri saya semakin gelisah.",
+            "Saya sukar untuk relaks.",
+            "Saya rasa sedih dan murung.",
+            "Saya tidak dapat menahan sabar dengan perkara yang menghalang saya meneruskan apa yang saya lakukan.",
+            "Saya rasa hampir-hampir menjadi panik/cemas.",
+            "Saya tidak bersemangat dengan apa jua yang saya lakukan.",
+            "Saya rasa tidak begitu berharga sebagai seorang individu.",
+            "Saya rasa saya mudah tersentuh.",
+            "Saya sedar tindakbalas jantung saya walaupun tidak melakukan aktiviti fizikal (contohnya kadar denyutan bertambah atau denyutan jantung berkurangan).",
+            "Saya berasa takut tanpa sebab yang munasabah.",
+            "Saya rasa hidup ini tidak bermakna.",
+        ];
+        
+        const scoring = {
+            depression: [3, 5, 10, 15, 18, 19, 23],
+            anxiety: [1, 4, 7, 9, 13, 17, 21],
+            stress: [0, 6, 8, 11, 12, 14, 16, 20, 22]
+        };
+        
+        const responses = [
+            { value: 0, label: "Tidak Langsung" },
+            { value: 1, label: "Sedikit atau Jarang-jarang" },
+            { value: 2, label: "Banyak atau Kerapkali" },
+            { value: 3, label: "Sangat Banyak atau Sangat Kerap" }
+        ];
+        
+        function loadQuestions() {
+            let container = document.getElementById("questions");
+            questions.forEach((question, index) => {
+                let div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `<p>${index + 1}. ${question}</p>`;
+                let optionsDiv = document.createElement("div");
+                optionsDiv.classList.add("options");
+                responses.forEach(response => {
+                    optionsDiv.innerHTML += `<label><input type="radio" name="q${index}" value="${response.value}"> ${response.value} - ${response.label}</label>`;
+                });
+                div.appendChild(optionsDiv);
+                container.appendChild(div);
+            });
+        }
+        
+        function calculateScores() {
+            let depression = 0, anxiety = 0, stress = 0;
+            let allAnswered = true;
+            
+            questions.forEach((_, index) => {
+                let value = document.querySelector(`input[name="q${index}"]:checked`);
+                if (!value) {
+                    allAnswered = false;
+                } else {
+                    let score = parseInt(value.value);
+                    if (scoring.depression.includes(index)) depression += score;
+                    if (scoring.anxiety.includes(index)) anxiety += score;
+                    if (scoring.stress.includes(index)) stress += score;
+                }
+            });
+            
+            if (!allAnswered) {
+                document.getElementById("errorMessage").innerText = "Sila jawab semua soalan dahulu.";
+                return;
+            }
+            document.getElementById("errorMessage").innerText = "";
+            
+            document.getElementById("result").innerHTML = `
+                <p>Depression Score: <strong>${depression}</strong></p>
+                <p>Anxiety Score: <strong>${anxiety}</strong></p>
+                <p>Stress Score: <strong>${stress}</strong></p>
+            `;
+        }
+        
+        window.onload = loadQuestions;
+    </script>
+</body>
+</html>
