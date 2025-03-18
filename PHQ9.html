@@ -106,11 +106,11 @@
         }
         
         function interpretScore(score) {
-            if (score >= 20) return "Teruk";
-            if (score >= 15) return "Sederhana Teruk";
-            if (score >= 10) return "Sederhana";
-            if (score >= 5) return "Ringan";
-            return "Normal";
+            if (score >= 20) return "Teruk: Anda mungkin mengalami tekanan yang ketara. Adalah sangat disyorkan untuk mendapatkan bantuan daripada profesional kesihatan mental.";
+            if (score >= 15) return "Sederhana Teruk: Anda mungkin mengalami gejala kemurungan yang serius. Berbincang dengan profesional kesihatan adalah langkah yang baik.";
+            if (score >= 10) return "Sederhana: Gejala mungkin menjejaskan kehidupan harian anda. Pertimbangkan untuk berbincang dengan doktor atau ahli terapi.";
+            if (score >= 5) return "Ringan: Terdapat beberapa tanda kemurungan, tetapi ia mungkin tidak terlalu mengganggu kehidupan harian anda. Pantau kesihatan mental anda dan amalkan strategi penjagaan diri.";
+            return "Normal: Jawapan anda menunjukkan simptom kemurungan yang minimal atau tiada. Jika anda pernah berasa tertekan, adalah baik untuk mendapatkan sokongan.";
         }
         
         window.onload = loadQuestions;
